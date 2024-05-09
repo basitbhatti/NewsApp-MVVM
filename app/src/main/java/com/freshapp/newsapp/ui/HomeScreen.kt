@@ -29,7 +29,6 @@ import com.freshapp.newsapp.state.NewsState
 
 @Composable
 fun HomeScreen(navController: NavHostController, articles: List<Article>) {
-
     LazyColumn {
         items(articles) {
             NewsItem(article = it, navController = navController)
@@ -37,11 +36,10 @@ fun HomeScreen(navController: NavHostController, articles: List<Article>) {
     }
 }
 
-
 @Composable
 fun NewsItem(modifier: Modifier = Modifier, article: Article, navController: NavHostController) {
 
-    Card(
+    Card (
         modifier = modifier
             .fillMaxWidth()
             .padding(15.dp)

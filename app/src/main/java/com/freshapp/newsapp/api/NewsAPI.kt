@@ -11,7 +11,7 @@ import retrofit2.http.Query
 //GET https://newsapi.org/v2/top-headlines?country=us&apiKey=cd0a1f02033943c7ad24661a449a8865
 
 const val BASE_URL = "https://newsapi.org/"
-const val API_KEY = "abc-abc-abc-abc-abc-abc"
+const val API_KEY = "cd0a1f02033943c7ad24661a449a8865"
 
 interface NewsInterface {
 

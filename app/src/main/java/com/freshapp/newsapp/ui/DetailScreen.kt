@@ -2,6 +2,7 @@ package com.freshapp.newsapp.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,38 +28,42 @@ import com.freshapp.newsapp.state.NewsState
 
 @Composable
 fun DetailScreen(
-    modifier: Modifier = Modifier
-        .fillMaxSize()
-        .background(Brush.sweepGradient(listOf(Color.White, Color.Gray)))
+    modifier: Modifier = Modifier.fillMaxSize()
 ) {
 
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Brush.sweepGradient(listOf(Color.White, Color.Gray)))
     ) {
         Card(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(20.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(25.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.White),
+            shape = RoundedCornerShape(20.dp)
         ) {
 
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                AsyncImage(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .height(150.dp)
-                        .clip(RoundedCornerShape(15.dp))
-                        .padding(20.dp),
-                    model = NewsState.currentArticle.urlToImage,
-                    contentDescription = "News Image"
+                AsyncImage( modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp)
+                    .clip(
+                        RoundedCornerShape(10.dp)
+                    ),
+                    model = NewsState.currentArticle!!.urlToImage,
+                    contentDescription = "News Image",
+
                 )
 
                 Text(
-                    text = NewsState.currentArticle.title,
+                    modifier = Modifier.padding(horizontal = 30.dp, vertical = 10.dp),
+                    text = NewsState.currentArticle!!.title,
                     fontSize = 22.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
@@ -66,14 +72,23 @@ fun DetailScreen(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    modifier = Modifier.padding(top = 15.dp),
+                    modifier = Modifier.padding(horizontal = 30.dp, vertical = 10.dp),
                     text = NewsState.currentArticle?.author ?: "Okay",
                     color = Color.Gray,
                 )
 
+                Text(
+                    modifier = Modifier.padding(horizontal = 30.dp, vertical = 10.dp),
+                    text = NewsState.currentArticle?.content ?: "Okay",
+                    color = Color.Black,
+                )
+
+
             }
+
         }
     }
+
 }
 
 
